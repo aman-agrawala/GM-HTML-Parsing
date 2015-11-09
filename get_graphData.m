@@ -4,7 +4,7 @@
 % excel.
 % get_graphData.m created for HTML Parsing/Automation Project by Aman Agrawala
 % 5/6
-function get_graphData(der,LX)
+function get_graphDataL11(der,LX, SNOpt)
 d=dir(fullfile(der,'*.xls'));
 runNum = 0;
 SignalCount = 1;
@@ -18,6 +18,7 @@ LXEmpty = 0;
 currentFolder = pwd;
 rankAvg = {};
 warning off
+sheetCount = 0;
 
 %First we find out where the empty column is in LX
 for start = 1:LXC
@@ -58,9 +59,42 @@ for excel = 1:(length(d))
         skip = 0;
         interData{1,1} = 'Start';
         maxDetected = 0;
+       
+       if varNum < 1
+           SignalCounts = 0;
+           sheetCount = 1;
+           while (isequal(raw{sheetCount,1} ,'Signal'))
+               SignalCounts = SignalCounts + 1;
+               sheetCount = sheetCount + 1;
+           end
+           %for SignalCounts2 = 1:SignalCounts-1
+%            interData{interDataRow,1} = 'NA';
+%            interData{interDataRow,2} = 'NA';
+%            interData{interDataRow,3} = 'NA';
+%            interData{interDataRow,4} = ['Run Number: ', num2str(SignalCounts2)];
+%            interDataRow = interDataRow + 1;
+%            varFound = 0;
+           %signalCounter = 1;
+         %  end
+        
+           % now recalculate varNum
+           secondSignal = 0;
+           rowCount = sheetCount;
+           while (secondSignal == 0)
+            if isequal(raw{rowCount,1},'Signal')
+                secondSignal = rowCount;
+            end
+            rowCount = rowCount+1;
+           end
+            varNum = secondSignal-sheetCount;
+       %else
+       end
         for varCount = 1:varNum
-            
+            if sheetCount ~= 0
+                var = raw{sheetCount,1};
+            else
             var = raw{varCount+1,1};
+            end
             signalCounter = 0;
             for sheetRow = 1:rawR
 %                 if isequal(raw{sheetRow,1},var)
@@ -305,8 +339,9 @@ for excel = 1:(length(d))
             secondSignal = 0;
             runNum = 0;
             rankAvg = {};
+            sheetCount = 0;
         end
-            
+      % end
         end
 end
     'get_graphData = Done'

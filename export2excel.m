@@ -11,16 +11,16 @@ relevant = {};
 specData = {};
 export = 0;
 excelRowStart = 1;
-currentFolder = der
+currentFolder = pwd;
 
 %Need to define a flexible procedure for deciding this
 filename = 'HTML_RawData';
-mkdir(fullfile(der,filename))
+mkdir(filename)
 
 % This code will create a Raw Excel Data folder
-for n=1:col 
+for n=1:row 
     sheetname = excelData{1,n}(1:length(excelData{1,n})-4); % the name of the specific sheet, unfortunately we can only select the first 31 characters
-    xlswrite(fullfile(currentFolder,filename,filename),excelData{2,n},sheetname,'A1');
+    xlswrite(fullfile(currentFolder,filename),excelData{2,n},sheetname,'A1');
 end
 
 %Now we will create excel files for the specific compnent inputs

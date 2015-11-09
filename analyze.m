@@ -3,7 +3,7 @@
 % this data in its final form called finalData. analyze.m created fr 
 % analyze.m created for HTML Parsing/Automation Project by Aman Agrawala
 % 3/6
-function finalData = analyze(data,filename)
+function finalData = analyzeL11(data,filename)
 sizeD = size(data);
 row = sizeD(1);
 col = sizeD(2);
@@ -43,15 +43,15 @@ for n = 1:col %go through all files
                     excelData{rloc,l} = val{k}(open(l)+4:close(l)-1); % Puts the column names where they belong
                     nameStart = []; %Clear out namestart for the next iteration of the overarching for loop
                 end
-                if(runNum ~= 2)
+%                 if(runNum ~= 2)
                     excelData{rloc,l+1} = ['Run number: ', int2str(runNum)];
                     rloc = rloc + 1;
                     runNum = runNum + 1;
-                else
-                    excelData{rloc,l+1} = ['Run number: Max Error'];
-                    rloc = rloc + 1;
-                    runNum = runNum + 1;
-                end
+%                 else
+%                     excelData{rloc,l+1} = ['Run number: Max Error'];
+%                     rloc = rloc + 1;
+%                     runNum = runNum + 1;
+%                 end
             else
                 open = [nameStart(1),open]; % Combine nameStart with open
                 %for r = 2:length(open) % counts the row you are on
