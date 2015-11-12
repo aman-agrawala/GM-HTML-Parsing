@@ -2,8 +2,9 @@
 % find all the relevant information within the html code. It will output
 % this data in its final form called finalData. analyze.m created fr 
 % analyze.m created for HTML Parsing/Automation Project by Aman Agrawala
+% This code is for L11 matricies.
 % 3/6
-function finalData = analyzeL11(data,filename)
+function finalData = analyze(data,filename)
 sizeD = size(data);
 row = sizeD(1);
 col = sizeD(2);

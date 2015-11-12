@@ -3,8 +3,9 @@
 % calculates the SN values, ranks and ranked averages and exports it all to
 % excel.
 % get_graphData.m created for HTML Parsing/Automation Project by Aman Agrawala
+% This code is for L11 matricies.
 % 5/6
-function get_graphDataL11(der,LX, SNOpt)
+function get_graphData(der,LX, SNOpt)
 d=dir(fullfile(der,'*.xls'));
 runNum = 0;
 SignalCount = 1;
